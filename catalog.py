@@ -1,6 +1,6 @@
 #!/usr/bin/python
 from __future__ import print_function
-import fcntl, cgi, csv;
+import fcntl, cgi, csv, sys;
 
 class open_locked:
     def __init__(self, *args, **kwargs):
@@ -72,10 +72,10 @@ for item in inventory:
 print("""
           </tbody>
         </table>
-        <input type="hidden" name="username" /> <!-- useless -->
+        <input type="hidden" name="username" value="{0}"/>
         <input type="submit" value="Order" />
       </form>
     </center>
   </body>
 </html>
-""")
+""".format(sys.argv[1] if len(sys.argv) > 1 else ''))
