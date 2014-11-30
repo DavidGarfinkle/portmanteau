@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>portmanteau - login</title>
+  </head>
+  <!-- had to make something that looks 'nice' without CSS... :'( -->
+  <body background="bg.jpg">
+    <big>
+      <table>
+        <tbody>
+          <tr>
+            <td><a href="index.html">home</a></td>
+            <td width="90%"></td>
+            <td><a href="catalog.html">catalog</a></td>
+            <td><a href="register.pl">register</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </big>
+    <center>
+      <h1>login</h1>
+      <form action="login.cgi" method="POST">
+        <label for="username">Username</label>
+        <input type="text" name="username" /><br /><br />
+        <label for="password">Password</label>
+        <input type="password" name="password" /><br /><br />
+        <input type="submit" value="Login" />
+      </form>
+    </center>
+  </body>
+</html>
