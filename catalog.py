@@ -43,22 +43,36 @@ Content-Type: text/html
       <h1>catalog</h1>
       <form action="purchase.py" method="POST">
         <table>
+          <thead>
+            <tr>
+              <th>Article</th>
+              <th></th>
+              <th>Price</th>
+              <th>Stock</th>
+              <th></th>
+              <th>Quantity to order</th>
+            </tr>
+          </thead>
           <tbody>
 """)
 
 for item in inventory:
-    print("""
-            <tr>
-              <td><b>{1}</b><br />{2}</td>
-              <td><img src="{3}" width="50px" height="50px" /></td>
-              <td><input type="checkbox" name="{0}" /></td>
-              <td><input type="number" name="{0}-count" value="0" /></td>
-            </tr>
-    """.format(*[cgi.escape(e) for e in item]))
+    if int(item[5]):
+        print("""
+        <tr>
+          <td><b>{1}</b><br />{2}</td>
+          <td><img src="{3}" width="50px" height="50px" /></td>
+          <td>{4}$</td>
+          <td>{5}</td>
+          <td><input type="checkbox" name="{0}" /></td>
+          <td><input type="number" name="{0}-count" value="0" /></td>
+        </tr>
+        """.format(*[cgi.escape(e) for e in item]))
 
 print("""
           </tbody>
         </table>
+        <input type="hidden" name="username" /> <!-- useless -->
         <input type="submit" value="Order" />
       </form>
     </center>

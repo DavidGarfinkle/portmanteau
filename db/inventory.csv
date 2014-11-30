@@ -1,3 +1,4 @@
-thing,Thing,It does stuff,img/rock.gif
-shinything,Shiny thing,ITS SHINY. MINE,img/shiny.jpg
-dangerousthing,Dangerous thing,Dont lick it,img/radio.jpg
+thing,Thing,It does stuff,img/rock.gif,5,45
+dangerousthing,Dangerous thing,Dont lick it,img/radio.jpg,100,34
+lostthing,Lost thing,We dont have it!,img/shiny.jpg,4000,0
+shinything,Shiny thing,ITS SHINY. MINE,img/shiny.jpg,20,2
