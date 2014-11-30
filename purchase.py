@@ -38,20 +38,25 @@ inv_db = open('db/inventory.csv', 'r+')
 lock(inv_db)
 
 inv_db.seek(0)
-inventory = dict(((row[0], row) for row in csv.reader(inv_db)))
+inventory = dict((
+    (row[0], row)
+    for row in csv.reader(inv_db)
+    if row and len(row) > 5
+))
 
 form = cgi.FieldStorage()
 order = dict((
-    (key, int(form[key + '-count']))
+    (key, int(form.getvalue(key + '-count')))
     for key in inventory if (
         key in form and key + '-count' in form and
-        form[key] and int(form[key + '-count'])
+        form.getvalue(key) and
+        int(form.getvalue(key + '-count'))
     )
 ))
 
 purchased = dict((
     (key, min(count, int(inventory[key][5])))
-    for key, count in order
+    for key, count in order.iteritems()
     if key in inventory and int(inventory[key][5])
 ))
 
