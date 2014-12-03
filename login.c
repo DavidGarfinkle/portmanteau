@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
+#include <crypt.h>
 
 void printErrorPage(){
 	printf("Content-Type:text/html\n\n");
@@ -15,6 +17,9 @@ typedef struct MEMBER {
 	char password[30];
 } member;
 
+int cmp_pwd(const char *plain, const char *hash){
+    return (plain && hash && !strcmp(crypt(plain, hash), hash));
+}
 
 csvParser(char* line, member* user){
 	const char d[2] = ",";
@@ -50,9 +55,11 @@ int main(int argc, char* argv[]){
 	login=strstr(temp, "=");
 	strcpy(user->password,++login);	
 	*strchr(user->password,'\n')='\0';		
+	
+	free(login);
 
 	//Open CSV file
-	csv = fopen("members.csv", "r");
+	csv = fopen("db/members.csv", "r");
 	if (csv == NULL) return 0;
 
 	while(fgets(csv_line,255,csv) != NULL){
@@ -72,17 +79,13 @@ int main(int argc, char* argv[]){
 		printErrorPage();
 		return 0;
 	}	
+
 	//If passwords do not match, then return error	
-	if (strcmp(user->password,current->password) != 0){
+	if (cmp_pwd(user->password,current->password)){
 		printErrorPage();
 		return 0;
 	}
 
-	//Append to loggedin.csv
-	csv = fopen("loggedin.csv","a");
-	if (csv == NULL) return 0;
-	strcat(user->username,"\n");
-	fputs(user->username,csv);
 
 	printf("Content-Type:text/html\n\n");
 
@@ -98,6 +101,14 @@ for (i = 0; i != sizeof(raw); ++i)
 	sprintf(cookie + i * 2, "%02X", raw[i]);
 
 printf("Set-Cookie: session=%s", cookie);
+
+	//Append to loggedin.csv
+	csv = fopen("loggedin.csv","a");
+	if (csv == NULL) return 0;
+	fputs(user->username,csv);
+	fputs(",",csv);
+	fputs(cookie,csv);
+	fputs("\n",csv);
 
 	printf("<html><head><meta http-equiv=\"refresh\" content=\"0; url=\"cs.mcgill.ca/~rberna14/comp206-a4/catalog.py\" /></head></html>");
 }
