@@ -12,9 +12,9 @@ void printErrorPage(){
 }
 
 typedef struct MEMBER {
-	char fullname[30];
-	char username[30];
-	char password[30];
+	char fullname[300];
+	char username[300];
+	char password[300];
 } member;
 
 int cmp_pwd(const char *plain, const char *hash){
@@ -55,8 +55,6 @@ int main(int argc, char* argv[]){
 	login=strstr(temp, "=");
 	strcpy(user->password,++login);	
 	*strchr(user->password,'\n')='\0';		
-	
-	free(login);
 
 	//Open CSV file
 	csv = fopen("db/members.csv", "r");
@@ -87,7 +85,7 @@ int main(int argc, char* argv[]){
 	}
 
 
-	printf("Content-Type:text/html\n\n");
+	printf("Content-Type: text/html\n");
 
 char raw[0x10], cookie[0x40] = { 0 };
 FILE *urand;
@@ -100,7 +98,7 @@ fclose(urand);
 for (i = 0; i != sizeof(raw); ++i)
 	sprintf(cookie + i * 2, "%02X", raw[i]);
 
-printf("Set-Cookie: session=%s", cookie);
+printf("Set-Cookie: session=%s\n\n", cookie);
 
 	//Append to loggedin.csv
 	csv = fopen("loggedin.csv","a");
