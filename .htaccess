@@ -1,2 +1,2 @@
-AddHandler cgi-script .py
+AddHandler cgi-script .py .pl .cgi
 DirectoryIndex index.html
