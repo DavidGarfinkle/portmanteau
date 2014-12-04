@@ -88,7 +88,15 @@ Content-Type: text/html
 if user is None:
     print("""
     <h2>
-      Please <a href="login.html">log in</a> before placing an order.
+      Please <a href="login.cgi">log in</a> before placing an order.
+    </h2>
+    """)
+
+elif not len(order):
+    print("""
+    <h2>
+      Your order is empty. Please select the items you wish to purchase on
+      the <a href="catalog.py">catalog</a> before placing your order.
     </h2>
     """)
 
@@ -130,7 +138,7 @@ else:
         print("""
         <tr>
           <td>{0}</td>
-          <td>{1}</td>
+          <td>{1}$</td>
           <td>{2}</td>
           <td>{3}$</td>
         </tr>
