@@ -34,7 +34,7 @@ Content-Type: text/html
             <td><a href="index.html">home</a></td>
             <td width="90%"></td>
             <td><a href="catalog.py">catalog</a></td>
-            <td><a href="login.html">login</a></td>
+            <td><a href="login.cgi">login</a></td>
           </tr>
         </tbody>
       </table>
