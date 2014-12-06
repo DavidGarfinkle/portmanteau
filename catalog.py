@@ -60,8 +60,8 @@ for item in inventory:
     if int(item[5]):
         print("""
         <tr>
-          <td><b>{1}</b><br />{2}</td>
-          <td><img src="{3}" width="50px" height="50px" /></td>
+          <td width="500px"><b>{1}</b><br />{2}</td>
+          <td><img src="{3}" width="100px" height="100px" /></td>
           <td>{4}$</td>
           <td>{5}</td>
           <td><input type="checkbox" name="{0}" /></td>
