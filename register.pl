@@ -93,7 +93,7 @@ print <<END;
         <tbody>
           <tr>
             <td><a href="index.html">home</a></td>
-            <td width="90%"></td>
+            <td width="100%"></td>
             <td><a href="catalog.py">catalog</a></td>
             <td><a href="login.cgi">login</a></td>
           </tr>

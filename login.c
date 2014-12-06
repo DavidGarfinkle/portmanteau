@@ -22,7 +22,7 @@ login_page(const char *msg)
 	"        <tbody>\n"
 	"          <tr>\n"
 	"            <td><a href=\"index.html\">home</a></td>\n"
-	"            <td width=\"90%\"></td>\n"
+	"            <td width=\"100%\"></td>\n"
 	"            <td><a href=\"catalog.py\">catalog</a></td>\n"
 	"            <td><a href=\"register.pl\">register</a></td>\n"
 	"          </tr>\n"
