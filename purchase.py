@@ -168,8 +168,15 @@ for item in purchased:
     quantity = int(inventory[item][5])
     inventory[item][5] = str(quantity - purchased[item])
 
-inv_db.seek(0)
-csv.writer(inv_db).writerows(inventory.values())
+# FIXME: subtly bugged, sometimes causes extra stuff invalid to be added to inv_db
+# inv_db.seek(0)
+# csv.writer(inv_db).writerows(inventory.values())
+#
+# unlock(inv_db)
+# inv_db.close()
 
 unlock(inv_db)
 inv_db.close()
+
+with open_locked('db/inventory.csv', 'w') as inv_db:
+    csv.writer(inv_db).writerows(inventory.values())
